@@ -1,18 +1,67 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <div id="nav"> -->
+  <!-- <router-link to="/">Home</router-link> | -->
+  <!-- <router-link to="/about">About</router-link> -->
+  <!-- </div> -->
+  <header class="p-1 mb-3 border-bottom fixed-top bg-white">
+    <div class="container">
+      <div
+        class="
+          d-flex
+          flex-wrap
+          align-items-center
+          justify-content-center justify-content-lg-start
+        "
+      >
+        <a
+          href="/"
+          class="
+            d-flex
+            align-items-center
+            mb-2 mb-lg-0
+            text-dark text-decoration-none
+          "
+        >
+          <svg
+            class="bi me-2"
+            width="40"
+            height="32"
+            role="img"
+            aria-label="Bootstrap"
+          >
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+        </a>
+
+        <ul
+          class="
+            nav
+            col-12 col-lg-auto
+            me-lg-auto
+            mb-2
+            justify-content-center
+            mb-md-0
+          "
+        >
+          <li>
+            <a href="#" class="nav-link px-2 link-secondary">Overview</a>
+          </li>
+          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-outline-primary me-2">
+            Login
+          </button>
+          <button type="button" class="btn btn-primary">Sign-up</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <router-view />
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
 <style>
 #app {
@@ -21,6 +70,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+@import "~bootstrap/dist/css/bootstrap.css";
 </style>
