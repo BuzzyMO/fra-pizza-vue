@@ -3,14 +3,11 @@
     <div class="container">
       <main>
         <div class="py-5 text-center">
-          <!--            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72"-->
-          <!--                 height="57">-->
           <h2>Sign Up</h2>
         </div>
 
         <div class="row g-5 d-flex justify-content-center">
           <div class="col-md-7 col-lg-8">
-            <!--                <h4 class="mb-3">Billing address</h4>-->
             <form class="needs-validation" novalidate="">
               <div class="row g-3">
                 <div class="col-sm-6">
@@ -106,9 +103,9 @@
 
 <script>
 import SignUpService from "@/services/SignUpService";
+import Validation from "@/utils/Validation";
 
 export default {
-  name: "Payload",
   data() {
     return {
       payload: {
@@ -123,32 +120,13 @@ export default {
 
   methods: {
     validate() {
-      "use strict";
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll(".needs-validation");
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms).forEach(function (form) {
-        form.addEventListener(
-          "submit",
-          function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-
-            form.classList.add("was-validated");
-          },
-          false
-        );
-      });
+      Validation.validate();
       this.postUser();
     },
     postUser() {
       var validated = document.querySelector(".needs-validation");
       if (validated.checkValidity()) {
         console.log("Validation succeeded");
-        console.log(this.payload);
         SignUpService.postUser(this.payload)
           .then((response) => {
             console.log(response.status);
@@ -169,6 +147,9 @@ export default {
 </script>
 
 <style scoped>
+body {
+  height: 100vh;
+}
 body {
   display: flex;
   align-items: center;
