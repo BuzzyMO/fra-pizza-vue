@@ -44,23 +44,30 @@
           "
         >
           <li>
-            <a href="#" class="nav-link px-2 link-secondary">Overview</a>
+            <router-link to="/" class="nav-link px-2 link-secondary">Home</router-link>
           </li>
-          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+          <!-- <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li> -->
+          <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li> -->
+          <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
         </ul>
 
         <div class="col-md-3 text-end">
-          <button type="button" class="btn btn-outline-primary me-2">
+          <router-link
+            to="/login"
+            type="button"
+            class="btn btn-outline-primary me-2"
+          >
             Login
-          </button>
-          <button type="button" class="btn btn-primary">Sign-up</button>
+          </router-link>
+          <router-link to="/registration" type="button" class="btn btn-primary">
+            Sign-up
+          </router-link>
         </div>
       </div>
     </div>
   </header>
   <router-view />
+  <footer class="mt-5 mb-3 text-muted">© 2021 FraPizza</footer>
 </template>
 
 <style>
