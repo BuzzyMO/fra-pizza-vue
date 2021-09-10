@@ -1,8 +1,4 @@
 <template>
-  <!-- <div id="nav"> -->
-  <!-- <router-link to="/">Home</router-link> | -->
-  <!-- <router-link to="/about">About</router-link> -->
-  <!-- </div> -->
   <header class="p-1 mb-3 border-bottom fixed-top bg-white">
     <div class="container">
       <div
@@ -44,7 +40,9 @@
           "
         >
           <li>
-            <router-link to="/" class="nav-link px-2 link-secondary">Home</router-link>
+            <router-link to="/" class="nav-link px-2 link-secondary"
+              >Home</router-link
+            >
           </li>
           <!-- <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li> -->
           <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li> -->

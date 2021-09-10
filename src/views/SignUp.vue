@@ -127,7 +127,7 @@ export default {
       var validated = document.querySelector(".needs-validation");
       if (validated.checkValidity()) {
         console.log("Validation succeeded");
-        SignUpService.postUser(this.payload)
+        SignUpService.postUser(JSON.stringify(this.payload))
           .then((response) => {
             console.log(response.status);
           })
