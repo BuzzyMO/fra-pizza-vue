@@ -59,24 +59,13 @@ export default {
   methods: {
     validate() {
       Validation.validate();
-      this.headAuth();
+      this.login();
     },
-    headAuth() {
+    login() {
       var validated = document.querySelector(".needs-validation");
       if (validated.checkValidity()) {
         console.log("Validation succeeded");
-        console.log(this.credentials);
-        AuthService.headAuth(this.credentials)
-          .then((response) => {
-            console.log(response.status);
-          })
-          .catch(function (error) {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            }
-          });
+        AuthService.login(JSON.stringify(this.credentials));
       } else {
         console.log("Validation failed");
       }
