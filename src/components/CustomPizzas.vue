@@ -24,7 +24,7 @@
 
         <h2>{{ pizza.name }}</h2>
         <p>{{ pizza.description }}.</p>
-        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+        <button class="btn btn-secondary" @click="toCart({id: pizza.id, name:pizza.name })">Add to cart +</button>
       </div>
       <!-- /.col-lg-4 -->
     </div>
@@ -35,6 +35,7 @@
 
 <script>
 import PizzaService from "../services/PizzaService";
+import $store from "../store";
 
 export default {
   name: "Pizzas",
@@ -48,6 +49,10 @@ export default {
       PizzaService.getCustomPizzas().then((response) => {
         this.pizzas = response.data;
       });
+    },
+
+    toCart(pizza) {
+      $store.dispatch("addItem", pizza);
     },
   },
   created() {

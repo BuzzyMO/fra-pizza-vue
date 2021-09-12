@@ -47,9 +47,26 @@
           <!-- <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li> -->
           <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li> -->
           <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-expanded="false"
+              >Cart</a
+            >
+            <ul class="dropdown-menu" >
+              <li class="dropdown-item" v-for="pizza in cartPizzas" v-bind:key="pizza.id">{{ pizza.name }}</li>
+              <!-- <li><a class="dropdown-item" href="#">Some pizza 2</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+              <li><hr class="dropdown-divider" /></li>
+              <li><router-link to="/order" class="dropdown-item text-center">Order</router-link></li>
+            </ul>
+          </li>
         </ul>
 
-        <div class="col-md-3 text-end">
+        <div class="col-md-3 text-end" id="auth" v-if="seenLogin">
           <router-link
             to="/login"
             type="button"
@@ -57,9 +74,18 @@
           >
             Login
           </router-link>
-          <router-link to="/registration" type="button" class="btn btn-primary">
+          <router-link
+            to="/registration"
+            type="button"
+            class="btn btn-primary me-2"
+          >
             Sign-up
           </router-link>
+        </div>
+        <div class="" id="logged" v-if="seenLogout">
+          <button type="button" class="btn btn-primary" @click="logout()">
+            Logout
+          </button>
         </div>
       </div>
     </div>
@@ -67,6 +93,39 @@
   <router-view />
   <footer class="mt-5 mb-3 text-muted">© 2021 FraPizza</footer>
 </template>
+
+<script>
+import AuthService from "@/services/AuthService";
+import $store from "@/store";
+
+export default {
+  data() {
+    return {
+      seenLogin: true,
+      seenLogout: true,
+      cartPizzas:[],
+    };
+  },
+
+  methods: {
+    logout() {
+      console.log("111");
+      AuthService.logout();
+    },
+  },
+
+  created() {
+    this.cartPizzas = $store.getters.pizzas;
+
+    var user = localStorage.getItem("user");
+    if (user) {
+      this.seenLogout = true;
+    } else {
+      this.seenLogin = true;
+    }
+  },
+};
+</script>
 
 <style>
 #app {

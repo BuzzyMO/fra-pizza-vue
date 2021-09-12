@@ -68,6 +68,16 @@
               <input
                 type="text"
                 class="form-control"
+                placeholder="Pizza description"
+                required=""
+                v-model="pizzaDescription"
+              />
+            </div>
+            
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
                 placeholder="Pizza name"
                 required=""
                 v-model="pizzaName"
@@ -99,6 +109,7 @@ export default {
       ingredients: [],
       selectedIngredients: [],
       pizzaName: "",
+      pizzaDescription: "",
       //   pizzaIngredients: {
       //       pizza: "",
       //       ingredients: this.selectedIngredients,
@@ -120,6 +131,7 @@ export default {
         var pizzaIngredients = {
           pizza: {
             name: this.pizzaName,
+            description: this.pizzaDescription,
           },
           ingredients: idIngredients,
         };
