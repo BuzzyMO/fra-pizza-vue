@@ -88,8 +88,8 @@
 
               <button
                 class="w-100 btn btn-primary btn-lg"
-                type="submit"
-                @click="validate()"
+                type="button"
+                @click="postUser()"
               >
                 SignUp
               </button>
@@ -119,25 +119,13 @@ export default {
   },
 
   methods: {
-    validate() {
-      Validation.validate();
-      this.postUser();
-    },
     postUser() {
+      Validation.validate();
       var validated = document.querySelector(".needs-validation");
       if (validated.checkValidity()) {
         console.log("Validation succeeded");
         SignUpService.postUser(JSON.stringify(this.payload))
-          .then((response) => {
-            console.log(response.status);
-          })
-          .catch(function (error) {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            }
-          });
+          .then(() => this.$router.push("/"));
       } else {
         console.log("Validation failed");
       }

@@ -68,7 +68,7 @@
 
               <button
                 class="w-100 btn btn-primary btn-lg"
-                type="submit"
+                type="button"
                 @click="createOrder()"
               >
                 Create
@@ -109,16 +109,7 @@ export default {
         console.log("Validation succeeded");
         console.log(JSON.stringify(this.order));
         OrderService.createOrder(JSON.stringify(this.order))
-          .then((response) => {
-            console.log(response.status);
-          })
-          .catch(function (error) {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            }
-          });
+          .then(() => this.$router.push("/"));
       } else {
         console.log("Validation failed");
       }
