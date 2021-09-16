@@ -81,6 +81,15 @@
               >
             </li>
           </div>
+          <div v-if="isLogged && isAdmin">
+            <li>
+              <router-link
+                to="/admin/pizzerias"
+                class="nav-link px-2 link-secondary text-danger"
+                >Pizzerias</router-link
+              >
+            </li>
+          </div>
         </ul>
 
         <div class="col-md-3 text-end" id="auth" v-if="!isLogged">

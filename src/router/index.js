@@ -4,6 +4,7 @@ import Auth from '../views/Auth.vue'
 import SignUp from '../views/SignUp.vue'
 import Order from '../views/Order.vue'
 import AdminIngredients from '../views/AdminIngredients.vue'
+import AdminPizzerias from '../views/AdminPizzerias.vue'
 
 const routes = [
   {
@@ -34,6 +35,12 @@ const routes = [
     path: '/admin/ingredients',
     name: 'ingredients',
     component: AdminIngredients
+  },
+
+  {
+    path: '/admin/pizzerias',
+    name: 'pizzerias',
+    component: AdminPizzerias
   },
 ]
 
