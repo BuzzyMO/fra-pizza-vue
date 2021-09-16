@@ -56,17 +56,34 @@
               aria-expanded="false"
               >Cart</a
             >
-            <ul class="dropdown-menu" >
-              <li class="dropdown-item" v-for="pizza in cartPizzas" v-bind:key="pizza.id">{{ pizza.name }}</li>
-              <!-- <li><a class="dropdown-item" href="#">Some pizza 2</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            <ul class="dropdown-menu">
+              <li
+                class="dropdown-item"
+                v-for="pizza in cartPizzas"
+                v-bind:key="pizza.id"
+              >
+                {{ pizza.name }}
+              </li>
               <li><hr class="dropdown-divider" /></li>
-              <li><router-link to="/order" class="dropdown-item text-center">Order</router-link></li>
+              <li>
+                <router-link to="/order" class="dropdown-item text-center"
+                  >Order</router-link
+                >
+              </li>
             </ul>
           </li>
+          <div v-if="isLogged && isAdmin">
+            <li>
+              <router-link
+                to="/admin/ingredients"
+                class="nav-link px-2 link-secondary text-danger"
+                >Ingredients</router-link
+              >
+            </li>
+          </div>
         </ul>
 
-        <div class="col-md-3 text-end" id="auth" v-if="seenLogin">
+        <div class="col-md-3 text-end" id="auth" v-if="!isLogged">
           <router-link
             to="/login"
             type="button"
@@ -82,7 +99,7 @@
             Sign-up
           </router-link>
         </div>
-        <div class="" id="logged" v-if="seenLogout">
+        <div class="" id="logged" v-if="isLogged">
           <button type="button" class="btn btn-primary" @click="logout()">
             Logout
           </button>
@@ -97,13 +114,14 @@
 <script>
 import AuthService from "@/services/AuthService";
 import $store from "@/store";
+import { VueCookieNext } from "vue-cookie-next";
 
 export default {
   data() {
     return {
-      seenLogin: true,
-      seenLogout: true,
-      cartPizzas:[],
+      isLogged: false,
+      isAdmin: false,
+      cartPizzas: [],
     };
   },
 
@@ -111,17 +129,30 @@ export default {
     logout() {
       console.log("111");
       AuthService.logout();
+      this.$router.push("/");
+    },
+    checkAuthorities() {
+      AuthService.readUserAuthorities().then((response) => {
+        let values = response.data.filter((a) => a.value === "ROLE_ADMIN");
+        console.log(values);
+        if (values.length > 0) {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+      });
     },
   },
 
   created() {
     this.cartPizzas = $store.getters.pizzas;
 
-    var user = localStorage.getItem("user");
-    if (user) {
-      this.seenLogout = true;
+    var sessionCookie = VueCookieNext.isCookieAvailable("vertx-web.session");
+    if (sessionCookie) {
+      this.isLogged = true;
+      this.checkAuthorities();
     } else {
-      this.seenLogin = true;
+      this.isLogged = false;
     }
   },
 };
@@ -147,6 +178,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+body {
+  padding-top: 40px;
 }
 
 @import "~bootstrap/dist/css/bootstrap.css";
