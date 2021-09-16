@@ -2,13 +2,18 @@
   <div v-if="isLogged">
     <PizzaConstructor />
   </div>
-  <div class="pizzas-form">
+  <div class="main-form">
     <Pizzas />
   </div>
   <div v-if="isLogged">
     <span class="fs-3">Custom pizzas</span>
-    <div class="pizzas-form">
+    <div class="main-form">
       <CustomPizzas />
+    </div>
+  </div>
+  <div v-if="isLogged">
+    <span class="fs-3">Orders</span>
+    <div class="main-form">
       <UserOrders />
     </div>
   </div>
@@ -18,7 +23,7 @@
 import Pizzas from "@/components/Pizzas.vue";
 import PizzaConstructor from "@/components/PizzaConstructor.vue";
 import CustomPizzas from "@/components/CustomPizzas.vue";
-import UserOrders from '@/components/UserOrders.vue';
+import UserOrders from "@/components/UserOrders.vue";
 import { VueCookieNext } from "vue-cookie-next";
 
 export default {
@@ -46,15 +51,13 @@ export default {
 </script>
 
 <style scoped>
-.pizzas-form {
+.main-form {
   height: 100%;
 }
 
-.pizzas-form {
+.main-form {
   display: flex;
   padding-top: 40px;
   background-color: #f5f5f5;
 }
-
-/* .custom-pizza-form */
 </style>
