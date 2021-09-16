@@ -23,8 +23,8 @@
         </svg>
 
         <h2>{{ pizza.name }}</h2>
-        <p>{{ pizza.description }}.</p>
-        <button class="btn btn-secondary" @click="toCart({id: pizza.id, name:pizza.name })">Add to cart +</button>
+        <p>{{ pizza.description }}</p>
+        <button class="btn btn-secondary" @click="toCart({id: pizza.id, name:pizza.name })">Add to cart ${{ pizza.cost }}</button>
       </div>
       <!-- /.col-lg-4 -->
     </div>

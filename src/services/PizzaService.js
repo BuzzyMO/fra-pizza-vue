@@ -1,22 +1,23 @@
 import axios from 'axios';
 
-const PIZZA_API_BASE_URL = 'http://localhost:8080/api/pizzas/';
+const API_BASE_URL = 'http://localhost:8080/api/';
 const config = {
     withCredentials: true,
+    crossDomain: true,
 }
 
 class PizzaService {
 
     getPizzas() {
-        return axios.get(PIZZA_API_BASE_URL + 'authority/1');
+        return axios.get(API_BASE_URL + 'authorities/1/pizzas');
     }
 
     getCustomPizzas() {
-        return axios.get(PIZZA_API_BASE_URL + 'user', config);
+        return axios.get(API_BASE_URL + 'users/pizzas', config);
     }
 
     createPizza(data) {
-        return axios.post(PIZZA_API_BASE_URL, data, config);
+        return axios.post(API_BASE_URL + 'pizzas', data, config);
     }
 }
 
