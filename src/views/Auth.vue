@@ -31,8 +31,8 @@
         <div>
           <button
             class="w-100 btn btn-lg btn-primary"
-            type="submit"
-            @click="validate()"
+            type="button"
+            @click="login()"
           >
             Sign in
           </button>
@@ -57,15 +57,12 @@ export default {
   },
 
   methods: {
-    validate() {
-      Validation.validate();
-      this.login();
-    },
     login() {
+      Validation.validate();
       var validated = document.querySelector(".needs-validation");
       if (validated.checkValidity()) {
         console.log("Validation succeeded");
-        AuthService.login(JSON.stringify(this.credentials));
+        AuthService.login(this.credentials).then(() => this.$router.push("/"));
       } else {
         console.log("Validation failed");
       }
