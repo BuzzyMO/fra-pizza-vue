@@ -136,7 +136,6 @@ export default {
 
   methods: {
     logout() {
-      console.log("111");
       AuthService.logout();
       this.$router.push("/");
     },

@@ -28,7 +28,10 @@ class AuthService {
     }
 
     logout() {
-        return axios.delete(API_BASE_URL + 'auth')
+        var config = {
+            withCredentials: true,
+        }
+        return axios.delete(API_BASE_URL + 'auth', config)
             .then((response) => {
                 console.log(response.status);
                 console.log(response);
